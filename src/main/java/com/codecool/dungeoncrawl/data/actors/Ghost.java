@@ -2,15 +2,14 @@ package com.codecool.dungeoncrawl.data.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
 
-public class Skeleton extends Actor {
+public class Ghost extends Actor{
 
-
-    public Skeleton(Cell cell) {
+    public Ghost(Cell cell) {
         super(cell);
     }
 
     @Override
     public String getTileName() {
-        return "skeleton";
+        return "ghost";
     }
 }
