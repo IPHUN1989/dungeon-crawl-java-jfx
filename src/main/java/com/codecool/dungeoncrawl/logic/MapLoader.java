@@ -3,6 +3,7 @@ package com.codecool.dungeoncrawl.logic;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
+import com.codecool.dungeoncrawl.data.actors.*;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
 import com.codecool.dungeoncrawl.data.items.Key;
@@ -38,7 +39,23 @@ public class MapLoader {
                             break;
                         case 's':
                             cell.setType(CellType.FLOOR);
-                            new Skeleton(cell);
+                            Actor skeleton = new Skeleton(cell);
+                            map.addMonsterToList(skeleton);
+                            break;
+                        case 'd':
+                            cell.setType(CellType.FLOOR);
+                            Actor dragon = new Dragon(cell);
+                            map.addMonsterToList(dragon);
+                            break;
+                        case 'g':
+                            cell.setType(CellType.FLOOR);
+                            Actor ghost = new Ghost(cell);
+                            map.addMonsterToList(ghost);
+                            break;
+                        case 'h':
+                            cell.setType(CellType.FLOOR);
+                            Actor hulk = new Hulk(cell);
+                            map.addMonsterToList(hulk);
                             break;
                         case '@':
                             cell.setType(CellType.FLOOR);
@@ -48,7 +65,7 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             new Key(cell);
                             break;
-                        case 'd':
+                        case 'I':
                             cell.setType(CellType.FLOOR);
                             new Sword(cell);
                             break;
@@ -57,6 +74,9 @@ public class MapLoader {
                     }
                 }
             }
+        }
+        for (Actor monster : map.getMonsters()){
+            System.out.println(monster);
         }
         return map;
     }

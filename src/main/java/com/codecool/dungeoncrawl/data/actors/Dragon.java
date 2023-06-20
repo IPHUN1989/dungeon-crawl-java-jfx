@@ -2,10 +2,9 @@ package com.codecool.dungeoncrawl.data.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
 
-public class Skeleton extends Actor {
+public class Dragon extends Actor{
 
-
-    public Skeleton(Cell cell) {
+    public Dragon(Cell cell) {
         super(cell);
     }
 
@@ -16,6 +15,6 @@ public class Skeleton extends Actor {
 
     @Override
     public String getTileName() {
-        return "skeleton";
+        return "dragon";
     }
 }
