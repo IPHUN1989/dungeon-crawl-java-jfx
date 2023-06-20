@@ -11,7 +11,7 @@ public class Player extends Actor {
     @Override
     public void move(int dx, int dy) {
         Cell nextCell = getCell().getNeighbor(dx, dy);
-        if (nextCell.isCellType(CellType.FLOOR)) {
+        if (nextCell.isCellType(CellType.FLOOR) && !nextCell.hasActor()) {
             getCell().setActor(null);
             nextCell.setActor(this);
             setCell(nextCell);
