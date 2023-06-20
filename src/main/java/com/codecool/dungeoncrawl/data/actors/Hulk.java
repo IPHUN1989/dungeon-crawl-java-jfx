@@ -9,6 +9,11 @@ public class Hulk extends Actor{
     }
 
     @Override
+    public void move() {
+
+    }
+
+    @Override
     public String getTileName() {
         return "hulk";
     }
