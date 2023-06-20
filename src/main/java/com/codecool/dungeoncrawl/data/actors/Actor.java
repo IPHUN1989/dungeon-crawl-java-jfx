@@ -28,6 +28,10 @@ public abstract class Actor implements Drawable {
         return health;
     }
 
+    public void damage (int amount) {
+        this.health = this.health - amount;
+    }
+
     public Cell getCell() {
         return cell;
     }

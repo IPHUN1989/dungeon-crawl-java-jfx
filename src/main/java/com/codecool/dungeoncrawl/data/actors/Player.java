@@ -24,7 +24,11 @@ public class Player extends Actor {
             handlePickingUpItems();
             nextCell.setActor(this);
             setCell(nextCell);
+            if (getCell().getType() == CellType.FIRE){
+                damage(1);
+            }
         }
+        System.out.println(getHealth());
     }
 
     protected void handlePickingUpItems() {
