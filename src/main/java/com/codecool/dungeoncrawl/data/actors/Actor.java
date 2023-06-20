@@ -2,10 +2,15 @@ package com.codecool.dungeoncrawl.data.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.Drawable;
+import com.codecool.dungeoncrawl.data.items.Item;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Actor implements Drawable {
     private Cell cell;
     private int health = 10;
+
 
     public Actor(Cell cell) {
         this.cell = cell;
@@ -18,6 +23,8 @@ public abstract class Actor implements Drawable {
         nextCell.setActor(this);
         cell = nextCell;
     }
+
+
 
     public int getHealth() {
         return health;
