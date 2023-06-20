@@ -19,7 +19,7 @@ public class Player extends Actor {
     @Override
     public void move(int dx, int dy) {
         Cell nextCell = getCell().getNeighbor(dx, dy);
-        if (nextCell.isCellType(CellType.FLOOR) && !nextCell.hasActor()) {
+        if (nextCell.getType().isWalkable() && !nextCell.hasActor()) {
             getCell().setActor(null);
             handlePickingUpItems();
             nextCell.setActor(this);
@@ -39,7 +39,7 @@ public class Player extends Actor {
         return "player";
     }
 
-    public String getInventoryList() {return inventoryList.get(0).getTileName();}
+    public String getInventoryList() {return inventoryList.get(inventoryList.size()-1).getTileName();}
 
     public void setInventoryList(Item item) {
         inventoryList.add(item);
