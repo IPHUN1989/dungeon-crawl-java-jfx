@@ -46,6 +46,9 @@ public class MapLoader {
                             Actor skeleton = new Skeleton(cell);
                             map.addMonsterToList(skeleton);
                             break;
+                        case 'e':
+                            cell.setType(CellType.DOOR);
+                            break;
                         case 'd':
                             cell.setType(CellType.FLOOR);
                             Actor dragon = new Dragon(cell);

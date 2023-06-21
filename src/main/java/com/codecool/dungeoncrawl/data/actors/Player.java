@@ -6,6 +6,7 @@ import com.codecool.dungeoncrawl.data.items.Item;
 import java.util.ArrayList;
 import java.util.List;
 import com.codecool.dungeoncrawl.data.CellType;
+import com.codecool.dungeoncrawl.data.items.Key;
 
 
 public class Player extends Actor {
@@ -28,7 +29,16 @@ public class Player extends Actor {
                 damage(1);
             }
         }
-        System.out.println(getHealth());
+        enterExit(nextCell);
+    }
+
+    public void enterExit(Cell cell) {
+        if (cell.getType() == CellType.DOOR && playerHasTheKey(inventoryList))
+            cell.setType(CellType.EXIT);
+    }
+
+    private boolean playerHasTheKey (List <Item> inventoryList) {
+        return inventoryList.stream().anyMatch(item -> item.getTileName().equals("key"));
     }
 
     protected void handlePickingUpItems() {
