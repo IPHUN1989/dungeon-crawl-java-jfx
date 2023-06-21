@@ -59,6 +59,9 @@ public class MapLoader {
                             Actor ghost = new Ghost(cell);
                             map.addMonsterToList(ghost);
                             break;
+                        case 'p':
+                            cell.setType(CellType.DEAD);
+                            break;
                         case 'h':
                             cell.setType(CellType.FLOOR);
                             Actor hulk = new Hulk(cell);
