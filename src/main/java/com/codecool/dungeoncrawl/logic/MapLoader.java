@@ -43,7 +43,7 @@ public class MapLoader {
                             break;
                         case 's':
                             cell.setType(CellType.FLOOR);
-                            Actor skeleton = new Skeleton(cell);
+                            Skeleton skeleton = new Skeleton(cell);
                             map.addMonsterToList(skeleton);
                             break;
                         case 'e':
@@ -51,17 +51,17 @@ public class MapLoader {
                             break;
                         case 'd':
                             cell.setType(CellType.FLOOR);
-                            Actor dragon = new Dragon(cell);
+                            Dragon dragon = new Dragon(cell);
                             map.addMonsterToList(dragon);
                             break;
                         case 'g':
                             cell.setType(CellType.FLOOR);
-                            Actor ghost = new Ghost(cell);
+                            Ghost ghost = new Ghost(cell);
                             map.addMonsterToList(ghost);
                             break;
                         case 'h':
                             cell.setType(CellType.FLOOR);
-                            Actor hulk = new Hulk(cell);
+                            Hulk hulk = new Hulk(cell);
                             map.addMonsterToList(hulk);
                             break;
                         case '@':
@@ -86,7 +86,7 @@ public class MapLoader {
                 }
             }
         }
-        for (Actor monster : map.getMonsters()){
+        for (MonsterMove monster : map.getMonsters()){
             System.out.println(monster);
         }
         return map;

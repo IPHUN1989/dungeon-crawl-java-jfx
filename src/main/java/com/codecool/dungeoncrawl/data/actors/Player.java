@@ -19,7 +19,7 @@ public class Player extends Actor {
     }
 
     @Override
-    public void move(int dx, int dy) {
+    public void generalMove(int dx, int dy) {
         Cell nextCell = getCell().getNeighbor(dx, dy);
         if (nextCell.getType().isWalkable() && !nextCell.hasActor()) {
             getCell().setActor(null);
