@@ -1,17 +1,18 @@
 package com.codecool.dungeoncrawl.data.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
+import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.items.Item;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.codecool.dungeoncrawl.data.CellType;
-import com.codecool.dungeoncrawl.data.items.Key;
+import java.util.stream.Stream;
 
 
 public class Player extends Actor {
 
     private final List<Item> inventoryList;
+
     public Player(Cell cell) {
         super(cell);
         this.inventoryList = new ArrayList<>();
@@ -25,7 +26,7 @@ public class Player extends Actor {
             handlePickingUpItems();
             nextCell.setActor(this);
             setCell(nextCell);
-            if (getCell().getType() == CellType.FIRE){
+            if (getCell().getType() == CellType.FIRE) {
                 damage(1);
             }
         }
@@ -37,7 +38,7 @@ public class Player extends Actor {
             cell.setType(CellType.EXIT);
     }
 
-    private boolean playerHasTheKey (List <Item> inventoryList) {
+    private boolean playerHasTheKey(List<Item> inventoryList) {
         return inventoryList.stream().anyMatch(item -> item.getTileName().equals("key"));
     }
 
@@ -53,7 +54,9 @@ public class Player extends Actor {
         return "player";
     }
 
-    public String getInventoryList() {return inventoryList.get(inventoryList.size()-1).getTileName();}
+    public Stream<Item> getInventoryList() {
+        return inventoryList.stream();
+    }
 
     public void setInventoryList(Item item) {
         inventoryList.add(item);

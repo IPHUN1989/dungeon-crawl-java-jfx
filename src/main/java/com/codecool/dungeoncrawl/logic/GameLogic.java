@@ -1,7 +1,10 @@
 package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.data.Cell;
+import com.codecool.dungeoncrawl.data.Drawable;
 import com.codecool.dungeoncrawl.data.GameMap;
+
+import java.util.stream.Collectors;
 
 public class GameLogic {
     private GameMap map;
@@ -27,6 +30,10 @@ public class GameLogic {
 
     public String getPlayerHealth() {
         return Integer.toString(map.getPlayer().getHealth());
+    }
+
+    public String getInventory() {
+        return map.getPlayer().getInventoryList().map(Drawable::getTileName).collect(Collectors.joining("\n"));
     }
 
 
