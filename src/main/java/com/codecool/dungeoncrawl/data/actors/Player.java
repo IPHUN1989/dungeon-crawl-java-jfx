@@ -25,6 +25,9 @@ public class Player extends Actor {
             handlePickingUpItems();
             nextCell.setActor(this);
             setCell(nextCell);
+            if (getCell().getType() == CellType.FIRE){
+                damage(1);
+            }
         }
         enterExit(nextCell);
     }
@@ -41,6 +44,7 @@ public class Player extends Actor {
     protected void handlePickingUpItems() {
         if (getCell().getItem() != null) {
             setInventoryList(getCell().getItem());
+            System.out.println(getInventoryList());
         }
         getCell().setItem(null);
     }
@@ -49,7 +53,7 @@ public class Player extends Actor {
         return "player";
     }
 
-    public String getInventoryList() {return inventoryList.get(0).getTileName();}
+    public String getInventoryList() {return inventoryList.get(inventoryList.size()-1).getTileName();}
 
     public void setInventoryList(Item item) {
         inventoryList.add(item);

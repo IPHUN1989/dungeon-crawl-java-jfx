@@ -22,6 +22,10 @@ public class Cell implements Drawable {
         return type;
     }
 
+    public boolean isCellType(CellType cellType) {
+        return cellType.equals(type);
+    }
+
     public void setType(CellType type) {
         this.type = type;
     }

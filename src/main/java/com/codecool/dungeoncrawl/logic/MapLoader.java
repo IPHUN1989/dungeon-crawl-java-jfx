@@ -6,6 +6,7 @@ import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.actors.*;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
+import com.codecool.dungeoncrawl.data.items.Gold;
 import com.codecool.dungeoncrawl.data.items.Key;
 import com.codecool.dungeoncrawl.data.items.Sword;
 
@@ -31,22 +32,22 @@ public class MapLoader {
                         case ' ':
                             cell.setType(CellType.EMPTY);
                             break;
+                        case 'f':
+                            cell.setType(CellType.FIRE);
+                            break;
                         case '#':
                             cell.setType(CellType.WALL);
                             break;
-                        case 'e':
-                            cell.setType(CellType.DOOR);
-                            break;
                         case '.':
                             cell.setType(CellType.FLOOR);
-                            break;
-                        case 'q':
-                            cell.setType(CellType.EXIT);
                             break;
                         case 's':
                             cell.setType(CellType.FLOOR);
                             Actor skeleton = new Skeleton(cell);
                             map.addMonsterToList(skeleton);
+                            break;
+                        case 'e':
+                            cell.setType(CellType.DOOR);
                             break;
                         case 'd':
                             cell.setType(CellType.FLOOR);
@@ -74,6 +75,10 @@ public class MapLoader {
                         case 'I':
                             cell.setType(CellType.FLOOR);
                             new Sword(cell);
+                            break;
+                        case '$':
+                            cell.setType(CellType.FLOOR);
+                            new Gold(cell);
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
