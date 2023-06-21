@@ -30,6 +30,7 @@ public class Cell implements Drawable {
         this.actor = actor;
     }
 
+
     public void setItem(Item item) {this.item = item; }
 
     public Actor getActor() {

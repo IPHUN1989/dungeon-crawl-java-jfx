@@ -8,6 +8,8 @@ public abstract class Actor implements Drawable {
     private Cell cell;
     private int health = 10;
 
+    private int attack = 10;
+
     public Actor(Cell cell) {
         this.cell = cell;
         this.cell.setActor(this);
@@ -29,6 +31,10 @@ public abstract class Actor implements Drawable {
     public void damage (int amount) {
         this.health = this.health - amount;
     }
+    public boolean healthBarCheck (int health) {
+        return (health <= 1);
+    }
+
 
     public Cell getCell() {
         return cell;
@@ -36,6 +42,14 @@ public abstract class Actor implements Drawable {
 
     public int getX() {
         return cell.getX();
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
     }
 
     public int getY() {
