@@ -6,7 +6,7 @@ import com.codecool.dungeoncrawl.data.CellType;
 
 import java.util.Random;
 
-public class Ghost extends Actor{
+public class Ghost extends Actor implements MonsterMove{
 
     public Ghost(Cell cell) {
         super(cell);
