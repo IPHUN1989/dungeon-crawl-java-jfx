@@ -19,9 +19,9 @@ public class Ghost extends Actor{
         int[] coordinates = {-1, 0, 1};
         int coordinate = random.nextInt(2);
         if (coordinate == 0){
-            super.move(coordinates[random.nextInt(3)],0);
+            super.generalMove(coordinates[random.nextInt(3)],0);
         } else {
-            super.move(0, coordinates[random.nextInt(3)]);
+            super.generalMove(0, coordinates[random.nextInt(3)]);
         }
     }
 

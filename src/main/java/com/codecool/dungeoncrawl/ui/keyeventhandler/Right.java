@@ -10,7 +10,7 @@ public class Right extends KeyHandler {
     @Override
     public void perform(KeyEvent event, GameMap map) {
         if(code.equals(event.getCode())) {
-            map.getPlayer().move(1, 0);
+            map.getPlayer().generalMove(1, 0);
             moveMonsters(map);
         }
     }
