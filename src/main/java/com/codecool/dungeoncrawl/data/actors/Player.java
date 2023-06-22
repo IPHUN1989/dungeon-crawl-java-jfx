@@ -64,7 +64,6 @@ public class Player extends Actor implements Alive {
     protected void handlePickingUpItems() {
         if (getCell().getItem() != null) {
             setInventoryList(getCell().getItem());
-            System.out.println(getInventoryList());
         }
         getCell().setItem(null);
     }

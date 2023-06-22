@@ -1,5 +1,6 @@
 package com.codecool.dungeoncrawl.ui.keyeventhandler;
 
+import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.logic.GameLogic;
