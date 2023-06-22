@@ -16,6 +16,9 @@ public class Left extends KeyHandler {
             Player player = logic.getMap().getPlayer();
             if (player.isAlive()){
                 player.generalMove(-1, 0);
+                if (logic.getMap().getPlayer().getCell().getType().equals(CellType.STAIRS)){
+                    logic.setMap("/map2.txt");
+                }
                 logic.moveMonsters();
                 logic.replaceDeadActors();
             }

@@ -14,7 +14,10 @@ public class GameLogic {
     private GameMap map;
 
     public GameLogic() {
-        this.map = MapLoader.loadMap();
+        this.map = MapLoader.loadMap("/map.txt");
+    }
+    public void setMap(String pathToMap) {
+        this.map = MapLoader.loadMap(pathToMap);
     }
 
     public double getMapWidth() {
@@ -34,6 +37,14 @@ public class GameLogic {
 
     public String getPlayerHealth() {
         return Integer.toString(map.getPlayer().getHealth());
+    }
+
+    public int getPlayersXCoordinate() {
+        return map.getPlayer().getCell().getX();
+    }
+
+    public int getPlayersYCoordinate() {
+        return map.getPlayer().getCell().getY();
     }
 
     public String getInventory() {
