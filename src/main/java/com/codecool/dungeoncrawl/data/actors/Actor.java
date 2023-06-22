@@ -34,9 +34,6 @@ public abstract class Actor implements Drawable, Alive {
         return health;
     }
 
-    public boolean celHasActor () {
-        return (getCell().hasActor());
-    }
 
     public void damage (int amount) {
         this.health = this.health - amount;

@@ -20,22 +20,20 @@ public class Player extends Actor implements Alive {
 
     @Override
     public void generalMove(int dx, int dy) {
-        if (celHasActor()) {
-            increasingAttack();
-            Cell nextCell = getCell().getNeighbor(dx, dy);
-            if (nextCell.getType().isWalkable() && !nextCell.hasActor()) {
-                getCell().setActor(null);
-                handlePickingUpItems();
-                nextCell.setActor(this);
-                setCell(nextCell);
-                if (getCell().getType() == CellType.FIRE) {
-                    damage(1);
-                }
-            } else if (nextCell.hasActor()) {
-                attackOtherActor(getCell(), nextCell);
+        increasingAttack();
+        Cell nextCell = getCell().getNeighbor(dx, dy);
+        if (nextCell.getType().isWalkable() && !nextCell.hasActor()) {
+            getCell().setActor(null);
+            handlePickingUpItems();
+            nextCell.setActor(this);
+            setCell(nextCell);
+            if (getCell().getType() == CellType.FIRE) {
+                damage(1);
             }
-            enterExit(nextCell);
+        } else if (nextCell.hasActor()) {
+            attackOtherActor(getCell(), nextCell);
         }
+        enterExit(nextCell);
     }
 
     @Override
