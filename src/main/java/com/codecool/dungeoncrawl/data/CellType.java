@@ -7,7 +7,7 @@ public enum CellType {
     DOOR("door", false),
     EXIT("exit", true),
     FIRE ("fire", true),
-    DEAD ("dead", true);
+    DEAD ("dead", false);
 
     private final String tileName;
     private final boolean isWalkable;

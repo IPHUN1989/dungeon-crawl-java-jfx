@@ -6,13 +6,19 @@ import com.codecool.dungeoncrawl.data.Drawable;
 
 public abstract class Actor implements Drawable {
     private Cell cell;
-    private int health = 10;
+    private int health;
 
-    private int attack = 10;
+    private int attack;
 
-    public Actor(Cell cell) {
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public Actor(Cell cell, int attack, int health) {
         this.cell = cell;
         this.cell.setActor(this);
+        this.attack = attack;
+        this.health = health;
     }
 
     public void generalMove(int dx, int dy) {
@@ -28,11 +34,15 @@ public abstract class Actor implements Drawable {
         return health;
     }
 
+    public boolean celHasActor () {
+        return (getCell().hasActor());
+    }
+
     public void damage (int amount) {
         this.health = this.health - amount;
     }
     public boolean healthBarCheck (int health) {
-        return (health <= 1);
+        return (health <= 0);
     }
 
 
@@ -42,6 +52,13 @@ public abstract class Actor implements Drawable {
 
     public int getX() {
         return cell.getX();
+    }
+
+    public void attackOtherActor(Cell cell, Cell nextCell) {
+        int newHealth = nextCell.getActor().getHealth() - cell.getActor().getAttack();
+        nextCell.getActor().setHealth(newHealth);
+        System.out.println(nextCell.getActor().getHealth());
+        System.out.println(cell.getActor().getHealth());
     }
 
     public int getAttack() {
