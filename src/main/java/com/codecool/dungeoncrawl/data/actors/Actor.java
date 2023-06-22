@@ -40,7 +40,6 @@ public abstract class Actor implements Drawable, Alive {
     }
 
     public void handleDeath () {
-        System.out.println("Died");
         getCell().setActor(null);
         getCell().setType(CellType.DEAD);
     }
@@ -56,8 +55,6 @@ public abstract class Actor implements Drawable, Alive {
     public void attackOtherActor(Cell cell, Cell nextCell) {
         int newHealth = nextCell.getActor().getHealth() - cell.getActor().getAttack();
         nextCell.getActor().setHealth(newHealth);
-        System.out.println(nextCell.getActor().getHealth());
-        System.out.println(cell.getActor().getHealth());
     }
 
     public int getAttack() {
