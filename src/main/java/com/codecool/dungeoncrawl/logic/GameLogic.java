@@ -32,6 +32,14 @@ public class GameLogic {
         return Integer.toString(map.getPlayer().getHealth());
     }
 
+    public int getPlayersXCoordinate() {
+        return map.getPlayer().getCell().getX();
+    }
+
+    public int getPlayersYCoordinate() {
+        return map.getPlayer().getCell().getY();
+    }
+
     public String getInventory() {
         return map.getPlayer().getInventoryList().map(Drawable::getTileName).collect(Collectors.joining("\n"));
     }
