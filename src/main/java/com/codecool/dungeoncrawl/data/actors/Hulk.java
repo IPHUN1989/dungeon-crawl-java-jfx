@@ -30,12 +30,12 @@ public class Hulk extends Actor implements MonsterMove {
                 generalMove(1, 0);
                 attackOtherActor(getCell(), nextRightCell);
             }
-            if (healthBarCheck(this.getHealth())) {
-                System.out.println("Died");
-                getCell().setActor(null);
-                getCell().setType(CellType.DEAD);
-            }
         }
+    }
+
+    @Override
+    public boolean isAlive() {
+        return getHealth() > 0;
     }
 
     @Override

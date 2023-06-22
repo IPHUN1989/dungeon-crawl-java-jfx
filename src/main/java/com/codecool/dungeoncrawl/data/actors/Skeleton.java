@@ -27,11 +27,6 @@ public class Skeleton extends Actor implements MonsterMove {
             } else {
                 generalMove(direction, 0);
             }
-            if (healthBarCheck(this.getHealth())) {
-                System.out.println("Died");
-                getCell().setActor(null);
-                getCell().setType(CellType.DEAD);
-            }
         }
     }
 
@@ -43,5 +38,10 @@ public class Skeleton extends Actor implements MonsterMove {
     @Override
     public String getTileName() {
         return "skeleton";
+    }
+
+    @Override
+    public boolean isAlive() {
+        return getHealth() > 0;
     }
 }

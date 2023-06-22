@@ -41,11 +41,12 @@ public class Ghost extends Actor implements MonsterMove {
                 super.generalMove(0, coordinates[random.nextInt(3)]);
             }
         }
-        if (healthBarCheck(this.getHealth())) {
-            System.out.println("Died");
-            getCell().setActor(null);
-            getCell().setType(CellType.DEAD);
-        }
+
+    }
+
+    @Override
+    public boolean isAlive() {
+        return getHealth() > 0;
     }
 
     @Override

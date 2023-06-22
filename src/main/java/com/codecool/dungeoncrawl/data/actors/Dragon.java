@@ -27,12 +27,12 @@ public class Dragon extends Actor implements MonsterMove {
             } else {
                 generalMove(0, direction);
             }
-            if (healthBarCheck(this.getHealth())) {
-                System.out.println("Died");
-                getCell().setActor(null);
-                getCell().setType(CellType.DEAD);
-            }
         }
+    }
+
+    @Override
+    public boolean isAlive() {
+        return getHealth() > 0;
     }
 
     private void changeDirection() {

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 
-public class Player extends Actor {
+public class Player extends Actor implements Alive {
 
     private final List<Item> inventoryList;
 
@@ -34,14 +34,13 @@ public class Player extends Actor {
             } else if (nextCell.hasActor()) {
                 attackOtherActor(getCell(), nextCell);
             }
-            if (healthBarCheck(this.getHealth())) {
-                System.out.println("Died");
-                nextCell.setActor(null);
-                getCell().setActor(null);
-                getCell().setType(CellType.DEAD);
-            }
             enterExit(nextCell);
         }
+    }
+
+    @Override
+    public boolean isAlive() {
+        return getHealth() > 0;
     }
 
     public void enterExit(Cell cell) {
