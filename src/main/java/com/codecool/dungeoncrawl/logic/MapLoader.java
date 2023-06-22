@@ -50,6 +50,9 @@ public class MapLoader {
                         case 'e':
                             cell.setType(CellType.DOOR);
                             break;
+                        case 'q':
+                            cell.setType(CellType.STAIRS);
+                            break;
                         case 'd':
                             cell.setType(CellType.FLOOR);
                             Dragon dragon = new Dragon(cell, 50, 100);
