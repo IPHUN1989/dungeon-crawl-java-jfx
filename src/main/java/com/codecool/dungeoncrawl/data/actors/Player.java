@@ -9,28 +9,38 @@ import java.util.List;
 import java.util.stream.Stream;
 
 
-public class Player extends Actor {
+public class Player extends Actor implements Alive {
 
     private final List<Item> inventoryList;
 
-    public Player(Cell cell) {
-        super(cell);
+    public Player(Cell cell, int attack, int health) {
+        super(cell, attack, health);
         this.inventoryList = new ArrayList<>();
     }
 
     @Override
     public void generalMove(int dx, int dy) {
-        Cell nextCell = getCell().getNeighbor(dx, dy);
-        if (nextCell.getType().isWalkable() && !nextCell.hasActor()) {
-            getCell().setActor(null);
-            handlePickingUpItems();
-            nextCell.setActor(this);
-            setCell(nextCell);
-            if (getCell().getType() == CellType.FIRE) {
-                damage(1);
+        if (celHasActor()) {
+            increasingAttack();
+            Cell nextCell = getCell().getNeighbor(dx, dy);
+            if (nextCell.getType().isWalkable() && !nextCell.hasActor()) {
+                getCell().setActor(null);
+                handlePickingUpItems();
+                nextCell.setActor(this);
+                setCell(nextCell);
+                if (getCell().getType() == CellType.FIRE) {
+                    damage(1);
+                }
+            } else if (nextCell.hasActor()) {
+                attackOtherActor(getCell(), nextCell);
             }
+            enterExit(nextCell);
         }
-        enterExit(nextCell);
+    }
+
+    @Override
+    public boolean isAlive() {
+        return getHealth() > 0;
     }
 
     public void enterExit(Cell cell) {
@@ -38,8 +48,17 @@ public class Player extends Actor {
             cell.setType(CellType.EXIT);
     }
 
+    public void increasingAttack() {
+        if (playerHasTheSword(inventoryList))
+            setAttack(50);
+    }
+
     private boolean playerHasTheKey(List<Item> inventoryList) {
         return inventoryList.stream().anyMatch(item -> item.getTileName().equals("key"));
+    }
+
+    private boolean playerHasTheSword(List<Item> inventoryList) {
+        return inventoryList.stream().anyMatch(item -> item.getTileName().equals("sword"));
     }
 
     protected void handlePickingUpItems() {

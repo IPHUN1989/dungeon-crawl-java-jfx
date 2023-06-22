@@ -1,8 +1,12 @@
 package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.data.Cell;
+import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.Drawable;
 import com.codecool.dungeoncrawl.data.GameMap;
+import com.codecool.dungeoncrawl.data.actors.Actor;
+import com.codecool.dungeoncrawl.data.actors.Alive;
+import com.codecool.dungeoncrawl.data.actors.MonsterMove;
 
 import java.util.stream.Collectors;
 
@@ -44,6 +48,14 @@ public class GameLogic {
         return map.getPlayer().getInventoryList().map(Drawable::getTileName).collect(Collectors.joining("\n"));
     }
 
+    public void moveMonsters () {
+        map.getMonsters().filter(Alive::isAlive).forEach(MonsterMove::move);
+
+    }
+
+    public void replaceDeadActors () {
+        map.getActors().filter(actor -> !actor.isAlive()).forEach(Actor::handleDeath);
+    }
 
     public GameMap getMap() {
         return map;
