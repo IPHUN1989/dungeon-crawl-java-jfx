@@ -15,22 +15,23 @@ public class Skeleton extends Actor implements MonsterMove {
         if (celHasActor()) {
             Cell nextLeftCell = getCell().getNeighbor(-1, 0);
             Cell nextRightCell = getCell().getNeighbor(1, 0);
-            if (!nextLeftCell.getType().isWalkable() || !nextRightCell.getType().isWalkable()) {
-                changeDirection();
-                generalMove(direction, 0);
-            } else if (nextLeftCell.hasActor() && nextLeftCell.getActor().getTileName().equals("player")) {
-                generalMove(-1, 0);
-                attackOtherActor(getCell(), nextLeftCell);
-            } else if (nextRightCell.hasActor() && nextRightCell.getActor().getTileName().equals("player")) {
-                generalMove(1, 0);
-                attackOtherActor(getCell(), nextRightCell);
-            } else {
-                generalMove(direction, 0);
-            }
-            if (healthBarCheck(this.getHealth())) {
+            if (isDead(this.getHealth())) {
                 System.out.println("Died");
                 getCell().setActor(null);
                 getCell().setType(CellType.DEAD);
+            } else {
+                if (!nextLeftCell.getType().isWalkable() || !nextRightCell.getType().isWalkable()) {
+                    changeDirection();
+                    generalMove(direction, 0);
+                } else if (nextLeftCell.hasActor() && nextLeftCell.getActor().getTileName().equals("player")) {
+                    generalMove(-1, 0);
+                    attackOtherActor(getCell(), nextLeftCell);
+                } else if (nextRightCell.hasActor() && nextRightCell.getActor().getTileName().equals("player")) {
+                    generalMove(1, 0);
+                    attackOtherActor(getCell(), nextRightCell);
+                } else {
+                    generalMove(direction, 0);
+                }
             }
         }
     }

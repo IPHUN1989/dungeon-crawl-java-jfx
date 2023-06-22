@@ -15,22 +15,23 @@ public class Dragon extends Actor implements MonsterMove {
         if (celHasActor()) {
             Cell nextUpperCell = getCell().getNeighbor(0, -1);
             Cell nextLowerCell = getCell().getNeighbor(0, 1);
-            if (!nextUpperCell.getType().isWalkable() || !nextLowerCell.getType().isWalkable()) {
-                changeDirection();
-                generalMove(0, direction);
-            } else if (nextUpperCell.hasActor() && nextUpperCell.getActor().getTileName().equals("player")) {
-                generalMove(0, -1);
-                attackOtherActor(getCell(), nextUpperCell);
-            } else if (nextLowerCell.hasActor() && nextLowerCell.getActor().getTileName().equals("player")) {
-                generalMove(0, 1);
-                attackOtherActor(getCell(), nextLowerCell);
-            } else {
-                generalMove(0, direction);
-            }
-            if (healthBarCheck(this.getHealth())) {
+            if (isDead(this.getHealth())) {
                 System.out.println("Died");
                 getCell().setActor(null);
                 getCell().setType(CellType.DEAD);
+            } else {
+                if (!nextUpperCell.getType().isWalkable() || !nextLowerCell.getType().isWalkable()) {
+                    changeDirection();
+                    generalMove(0, direction);
+                } else if (nextUpperCell.hasActor() && nextUpperCell.getActor().getTileName().equals("player")) {
+                    generalMove(0, -1);
+                    attackOtherActor(getCell(), nextUpperCell);
+                } else if (nextLowerCell.hasActor() && nextLowerCell.getActor().getTileName().equals("player")) {
+                    generalMove(0, 1);
+                    attackOtherActor(getCell(), nextLowerCell);
+                } else {
+                    generalMove(0, direction);
+                }
             }
         }
     }

@@ -41,7 +41,7 @@ public abstract class Actor implements Drawable {
     public void damage (int amount) {
         this.health = this.health - amount;
     }
-    public boolean healthBarCheck (int health) {
+    public boolean isDead (int health) {
         return (health <= 0);
     }
 

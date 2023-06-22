@@ -23,24 +23,25 @@ public class Player extends Actor {
         if (celHasActor()) {
             increasingAttack();
             Cell nextCell = getCell().getNeighbor(dx, dy);
-            if (nextCell.getType().isWalkable() && !nextCell.hasActor()) {
-                getCell().setActor(null);
-                handlePickingUpItems();
-                nextCell.setActor(this);
-                setCell(nextCell);
-                if (getCell().getType() == CellType.FIRE) {
-                    damage(1);
-                }
-            } else if (nextCell.hasActor()) {
-                attackOtherActor(getCell(), nextCell);
-            }
-            if (healthBarCheck(this.getHealth())) {
+            if (isDead(this.getHealth())) {
                 System.out.println("Died");
                 nextCell.setActor(null);
                 getCell().setActor(null);
                 getCell().setType(CellType.DEAD);
+            } else {
+                if (nextCell.getType().isWalkable() && !nextCell.hasActor()) {
+                    getCell().setActor(null);
+                    handlePickingUpItems();
+                    nextCell.setActor(this);
+                    setCell(nextCell);
+                    if (getCell().getType() == CellType.FIRE) {
+                        damage(1);
+                    }
+                } else if (nextCell.hasActor()) {
+                    attackOtherActor(getCell(), nextCell);
+                }
+                enterExit(nextCell);
             }
-            enterExit(nextCell);
         }
     }
 
