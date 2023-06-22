@@ -45,6 +45,7 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             Skeleton skeleton = new Skeleton(cell, 20, 30);
                             map.addMonsterToList(skeleton);
+                            map.addActorToList(skeleton);
                             break;
                         case 'e':
                             cell.setType(CellType.DOOR);
@@ -53,11 +54,13 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             Dragon dragon = new Dragon(cell, 50, 100);
                             map.addMonsterToList(dragon);
+                            map.addActorToList(dragon);
                             break;
                         case 'g':
                             cell.setType(CellType.FLOOR);
                             Ghost ghost = new Ghost(cell, 10, 20);
                             map.addMonsterToList(ghost);
+                            map.addActorToList(ghost);
                             break;
                         case 'p':
                             cell.setType(CellType.DEAD);
@@ -66,10 +69,13 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             Hulk hulk = new Hulk(cell, 50, 150);
                             map.addMonsterToList(hulk);
+                            map.addActorToList(hulk);
                             break;
                         case '@':
                             cell.setType(CellType.FLOOR);
-                            map.setPlayer(new Player(cell, 10, 100));
+                            Player player = new Player(cell, 10, 100);
+                            map.setPlayer(player);
+                            map.addActorToList(player);
                             break;
                         case 'k':
                             cell.setType(CellType.FLOOR);
@@ -88,9 +94,6 @@ public class MapLoader {
                     }
                 }
             }
-        }
-        for (MonsterMove monster : map.getMonsters()){
-            System.out.println(monster);
         }
         return map;
     }

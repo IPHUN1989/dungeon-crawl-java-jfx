@@ -6,12 +6,14 @@ import com.codecool.dungeoncrawl.data.actors.Player;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class GameMap {
     private int width;
     private int height;
     private Cell[][] cells;
     private List<MonsterMove> monsters;
+    private List<Actor> actors;
 
     private Player player;
 
@@ -19,6 +21,7 @@ public class GameMap {
         this.width = width;
         this.height = height;
         monsters = new ArrayList<>();
+        actors = new ArrayList<>();
         cells = new Cell[width][height];
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
@@ -51,7 +54,15 @@ public class GameMap {
         monsters.add(monster);
     }
 
-    public List<MonsterMove> getMonsters () {
-        return monsters;
+    public void addActorToList (Actor actor) {
+        actors.add(actor);
+    }
+
+    public Stream<MonsterMove> getMonsters () {
+        return monsters.stream();
+    }
+
+    public Stream<Actor> getActors() {
+        return actors.stream();
     }
 }

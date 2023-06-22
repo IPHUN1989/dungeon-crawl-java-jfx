@@ -4,7 +4,7 @@ import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.Drawable;
 
-public abstract class Actor implements Drawable {
+public abstract class Actor implements Drawable, Alive {
     private Cell cell;
     private int health;
 
@@ -41,10 +41,12 @@ public abstract class Actor implements Drawable {
     public void damage (int amount) {
         this.health = this.health - amount;
     }
-    public boolean isDead (int health) {
-        return (health <= 0);
-    }
 
+    public void handleDeath () {
+        System.out.println("Died");
+        getCell().setActor(null);
+        getCell().setType(CellType.DEAD);
+    }
 
     public Cell getCell() {
         return cell;

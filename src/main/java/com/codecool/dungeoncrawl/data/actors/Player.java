@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 
-public class Player extends Actor {
+public class Player extends Actor implements Alive {
 
     private final List<Item> inventoryList;
 
@@ -23,26 +23,24 @@ public class Player extends Actor {
         if (celHasActor()) {
             increasingAttack();
             Cell nextCell = getCell().getNeighbor(dx, dy);
-            if (isDead(this.getHealth())) {
-                System.out.println("Died");
-                nextCell.setActor(null);
+            if (nextCell.getType().isWalkable() && !nextCell.hasActor()) {
                 getCell().setActor(null);
-                getCell().setType(CellType.DEAD);
-            } else {
-                if (nextCell.getType().isWalkable() && !nextCell.hasActor()) {
-                    getCell().setActor(null);
-                    handlePickingUpItems();
-                    nextCell.setActor(this);
-                    setCell(nextCell);
-                    if (getCell().getType() == CellType.FIRE) {
-                        damage(1);
-                    }
-                } else if (nextCell.hasActor()) {
-                    attackOtherActor(getCell(), nextCell);
+                handlePickingUpItems();
+                nextCell.setActor(this);
+                setCell(nextCell);
+                if (getCell().getType() == CellType.FIRE) {
+                    damage(1);
                 }
-                enterExit(nextCell);
+            } else if (nextCell.hasActor()) {
+                attackOtherActor(getCell(), nextCell);
             }
+            enterExit(nextCell);
         }
+    }
+
+    @Override
+    public boolean isAlive() {
+        return getHealth() > 0;
     }
 
     public void enterExit(Cell cell) {
