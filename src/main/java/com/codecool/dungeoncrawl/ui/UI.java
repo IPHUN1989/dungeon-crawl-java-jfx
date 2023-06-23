@@ -67,6 +67,9 @@ public class UI {
                 }
             }
         }
+        if (!logic.getMap().getPlayer().isAlive()) {
+            mainStage.setGameStatusLabelText("YOU LOST!");
+        }
         mainStage.setHealthLabelText(logic.getPlayerHealth());
         mainStage.setInventoryLabelText(logic.getInventory());
     }
