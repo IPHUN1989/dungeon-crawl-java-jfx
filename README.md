@@ -49,10 +49,13 @@ git clone: https://github.com/IPHUN1989/dungeon-crawl-java-jfx.git
 # Navigate to the local folder
 cd {local_folder_of_cloned_project}
 
-# Compile the application
-javac src/main/java/com/codecool/dungeoncrawl/App.java
+# Build the project to a jar file
+mvn clean install
+
+# Navigate to target folder
+cd target/
 
 # Run the applicaiton
-java target/main/java/com/codecool/dungeoncrawl/App.class
+java -jar dungeon-crawl-1.0-SNAPSHOT.jar
 
 ```
